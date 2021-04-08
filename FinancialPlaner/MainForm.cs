@@ -20,6 +20,7 @@ namespace FinancialPlaner
         {
             InitializeComponent();
             LoadUsersList();
+            SQLiter.clearAllSessions();
         }
         private void LoadUsersList()
         {
@@ -59,6 +60,11 @@ namespace FinancialPlaner
         private void button2_Click(object sender, EventArgs e)
         {
             Navigation.toMainForm(new ChooseUser(), ActiveForm);
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

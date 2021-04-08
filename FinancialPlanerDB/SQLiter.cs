@@ -63,15 +63,16 @@ namespace FinancialPlanerDB
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 cnn.Execute("delete from categories where name=" +  "'" + name + "'");
+                cnn.Execute("delete from expenses where category='" + name + "'");
             }
         }
 
         /* Создание новой покупки */
-        public static void addPaynment(string name, string category, string cost)
+        public static void addPaynment(string name, string category, string cost, string user)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("insert into expenses (name, category, cost) values (@p1, @p2, @p3)", new { p1 = name, p2 = category, p3 = cost });
+                cnn.Execute("insert into expenses (name, category, cost, user) values (@p1, @p2, @p3, @p4)", new { p1 = name, p2 = category, p3 = cost, p4 = user });
                 cnn.Execute("update categories set currentCost = currentCost + " + cost + " where name='" + category+"'");
             }
         }
@@ -121,6 +122,15 @@ namespace FinancialPlanerDB
             }
         }
 
+        /* Изменение пароля пользователя */
+        public static void changePassword(string username, string password)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute("update users set password = '" + password + "' where username ='" + username + "'");
+            }
+        }
+
         /* получение сохранённого вопроса пользователя для
          * восстановления пароля
          */
@@ -148,6 +158,34 @@ namespace FinancialPlanerDB
         private static string LoadConnectionString(string id = "Default")
         {
             return @"Data Source=.\FP_db.db";
+        }
+
+        /* Обнулить сессию всех пользователей */
+        public static void clearAllSessions()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute("update users set isActive = 0");
+            }
+        }
+
+        /* Активиривоть сессию текущего пользователя */
+        public static void activateCurrentUser(string username)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute("update users set isActive = 1 where username ='" + username + "'");
+            }
+        }
+
+        /* Получить пользователя с активной сесией */
+        public static string getActiveUser()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<PersonModel>("select username from users where isActive = '1'");
+                return output.ToList()[0].username;
+            }
         }
     }
 }

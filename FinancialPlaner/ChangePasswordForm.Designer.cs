@@ -63,6 +63,7 @@ namespace FinancialPlaner
             this.button1.TabIndex = 2;
             this.button1.Text = "Подтвердить";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label2
             // 
@@ -99,6 +100,7 @@ namespace FinancialPlaner
             this.dontChange.TabIndex = 6;
             this.dontChange.Text = "Не изменять пароль";
             this.dontChange.UseVisualStyleBackColor = true;
+            this.dontChange.Click += new System.EventHandler(this.dontChange_Click);
             // 
             // ChangePasswordForm
             // 
@@ -116,6 +118,7 @@ namespace FinancialPlaner
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "ChangePasswordForm";
             this.Text = "ChangePasswordForm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();
 

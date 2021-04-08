@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using SideClass;
+using FinancialPlanerDB;
+
 namespace FinancialPlaner
 {
     public partial class ChangePasswordForm : Form
@@ -15,11 +18,33 @@ namespace FinancialPlaner
         public ChangePasswordForm()
         {
             InitializeComponent();
+            string username = SQLiter.getActiveUser();
+            qurrentPassword.Text = SQLiter.getUserPassword(username);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string password = textBox1.Text;
+            string username = SQLiter.getActiveUser();
+            DialogResult result = MessageBox.Show("Вы уверены в том, что хотите изменить пароль ?", "Инфо",
+                                                    MessageBoxButtons.YesNo,
+                                                    MessageBoxIcon.Information);
+            if (result == DialogResult.Yes)
+            {
+                SQLiter.changePassword(username, password);
+                MessageBox.Show("Пароль успешно изменён");
+                Navigation.toMainForm(new expensesForm(), ActiveForm);
+            }
+        }
+
+        private void dontChange_Click(object sender, EventArgs e)
+        {
+            Navigation.toMainForm(new expensesForm(), ActiveForm);
         }
     }
 }

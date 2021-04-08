@@ -105,11 +105,11 @@ namespace FinancialPlaner
             this.confirmLofinButton.Name = "confirmLofinButton";
             this.confirmLofinButton.Size = new System.Drawing.Size(444, 40);
             this.confirmLofinButton.TabIndex = 19;
-            this.confirmLofinButton.Text = "Восстановить пароль";
+            this.confirmLofinButton.Text = "Подтвердить логин";
             this.confirmLofinButton.UseVisualStyleBackColor = true;
             this.confirmLofinButton.Click += new System.EventHandler(this.confirmLofinButton_Click);
             // 
-            // RstorePasswordForm
+            // RestorePasswordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -124,8 +124,9 @@ namespace FinancialPlaner
             this.Controls.Add(this.username);
             this.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(6);
-            this.Name = "RstorePasswordForm";
+            this.Name = "RestorePasswordForm";
             this.Text = "RstorePasswordForm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();
 

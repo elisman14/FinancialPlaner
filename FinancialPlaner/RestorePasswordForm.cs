@@ -36,9 +36,13 @@ namespace FinancialPlaner
         private void restorePasswordButton_Click(object sender, EventArgs e)
         {
 
-                if (SQLiter.isAnswerCorrect(answerControlQuestion.Text, username.Text))
-                    Navigation.toMainForm(new ChangePasswordForm(), ActiveForm);
-                else MessageBox.Show("Ответ неверный");
+            if (SQLiter.isAnswerCorrect(answerControlQuestion.Text, username.Text))
+            {
+                // var f = new ChangePasswordForm();
+                SQLiter.activateCurrentUser(username.Text);
+                Navigation.toMainForm(new ChangePasswordForm(), ActiveForm);
+            }
+            else MessageBox.Show("Ответ неверный");
 
         }
     }

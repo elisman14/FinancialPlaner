@@ -25,6 +25,7 @@ namespace FinancialPlaner
             if (realPassword == password.Text)
             {
                 LogMessages.successfulLogin();
+                SQLiter.activateCurrentUser(username.Text);
                 Navigation.toMainForm(new expensesForm(), ActiveForm);
             }
             else LogMessages.wrongData();

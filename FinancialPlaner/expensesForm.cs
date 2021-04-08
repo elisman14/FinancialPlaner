@@ -69,10 +69,11 @@ namespace FinancialPlaner
 
         private void addPaynment_Click(object sender, EventArgs e)
         {
-            string name, cost;
+            string name, cost, user;
             name = Interaction.InputBox("Введите названия новой покупки:");
             cost = Interaction.InputBox("Введите сумму новой покупки:");
-            SQLiter.addPaynment(name, categoryLabel.Text, cost);
+            user = SQLiter.getActiveUser();
+            SQLiter.addPaynment(name, categoryLabel.Text, cost, user);
         }
 
         private void deleteCategoryButton_Click(object sender, EventArgs e)
