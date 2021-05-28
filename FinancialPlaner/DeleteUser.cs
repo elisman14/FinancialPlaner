@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using SideClass;
 using FinancialPlanerDB;
+using System.Security.Cryptography;
 
 namespace FinancialPlaner
 {
@@ -41,7 +42,8 @@ namespace FinancialPlaner
             p.username = selecteduser;
             string password = Interaction.InputBox("Введите пароль выбранного пользователя: ", "Введите значение", "", -1);
             string realPassword = SQLiter.getUserPassword(selecteduser);
-            if (realPassword == password)
+
+            if (realPassword == SQLiter.ComputeHash(password, new SHA256CryptoServiceProvider()))
             {
                 // Results.setCurrentUser(selecteduser);
                 SQLiter.deleteUser(p);

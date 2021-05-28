@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using SideClass;
 using FinancialPlanerDB;
+using System.Security.Cryptography;
 
 namespace FinancialPlaner
 {
@@ -29,7 +30,7 @@ namespace FinancialPlaner
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string password = textBox1.Text;
+            string password = SQLiter.ComputeHash(textBox1.Text, new SHA256CryptoServiceProvider());
             string username = SQLiter.getActiveUser();
             DialogResult result = MessageBox.Show("Вы уверены в том, что хотите изменить пароль ?", "Инфо",
                                                     MessageBoxButtons.YesNo,

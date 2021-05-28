@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,6 +22,8 @@ namespace FinancialPlaner
             InitializeComponent();
             LoadUsersList();
             SQLiter.clearAllSessions();
+            //MessageBox.Show((SQLiter.ComputeHash("q", new SHA256CryptoServiceProvider()) == SQLiter.ComputeHash("q", new SHA256CryptoServiceProvider())).ToString());
+
         }
         private void LoadUsersList()
         {

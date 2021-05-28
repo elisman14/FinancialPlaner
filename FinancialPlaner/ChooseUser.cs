@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,7 +23,7 @@ namespace FinancialPlaner
         private void confirm_Click(object sender, EventArgs e)
         {
             string realPassword = SQLiter.getUserPassword(username.Text);
-            if (realPassword == password.Text)
+            if (realPassword == SQLiter.ComputeHash(password.Text, new SHA256CryptoServiceProvider()))
             {
                 LogMessages.successfulLogin();
                 SQLiter.activateCurrentUser(username.Text);

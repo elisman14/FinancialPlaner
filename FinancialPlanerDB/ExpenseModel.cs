@@ -12,7 +12,7 @@ namespace FinancialPlanerDB
         public int id { get; set; }
         public string user { get; set; }
         public double cost { get; set; }
-        // public DateTime date { get; set; }
+        public DateTime date { get; set; }
         public string category { get; set; }
         public string name { get; set; }
     }

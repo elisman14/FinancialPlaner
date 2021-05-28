@@ -5,6 +5,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace FinancialPlanerDB
 {
@@ -77,6 +79,47 @@ namespace FinancialPlanerDB
             }
         }
 
+        /* Получение статистики за месяц/год */
+        public static List <ExpenseModel> getStat(String date, String param)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<ExpenseModel>("select * from expenses where strftime('%" + param + "', date) = '" + date + "'");
+                return output.ToList();
+            }
+        }
+        
+        /* Получение статистики за все время */
+        public static List<ExpenseModel> getAllTimeStat()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<ExpenseModel>("select * from expenses");
+                return output.ToList();
+            }
+        }
+
+        /* Получение года из текущей даты */
+        public static String takeYearFromCurrentDate()
+        {
+            String thisDay = DateTime.Today.ToString();
+            thisDay = thisDay.Replace(" 0:00:00", "");
+            thisDay = thisDay.Split('.')[2];
+            //thisDay = thisDay.Replace("05", "04");
+
+            return thisDay;
+        }
+
+        /* Получение месяца из текущей даты */
+        public static String takeMonthFromCurrentDate()
+        {
+            String thisDay = DateTime.Today.ToString();
+            thisDay = thisDay.Replace(" 0:00:00", "");
+            thisDay = thisDay.Split('.')[1];
+            //thisDay = thisDay.Replace("05", "04");
+
+            return thisDay;
+        }
 
 
         // ********** Раздел работы с пользователем **********
@@ -92,11 +135,13 @@ namespace FinancialPlanerDB
             }
         }
 
+
         /* Сохранение нового пользователя в базе данных */
         public static void saveUser(PersonModel person)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
+                person.password = ComputeHash(person.password, new SHA256CryptoServiceProvider());
                 cnn.Execute("insert into users (name, username, password, question, questionAnswer) values (@name, @username, @password, @question, @questionAnswer)", person);
             }
         }
@@ -110,6 +155,15 @@ namespace FinancialPlanerDB
                 Console.WriteLine(output.ToList()[0].password);
                 return output.ToList()[0].password;
             }
+        }
+        /* Алгоритм шифрования*/
+        public static string ComputeHash(string password, HashAlgorithm algorithm)
+        {
+            Byte[] inputBytes = Encoding.UTF8.GetBytes(password);
+
+            Byte[] hashedBytes = algorithm.ComputeHash(inputBytes);
+
+            return BitConverter.ToString(hashedBytes);
         }
 
         /* Удаление пользователя из бд */
