@@ -11,10 +11,11 @@ using Microsoft.VisualBasic;
 using SideClass;
 using FinancialPlanerDB;
 using System.Security.Cryptography;
+using MaterialSkin.Controls;
 
 namespace FinancialPlaner
 {
-    public partial class DeleteUser : Form
+    public partial class DeleteUser : MaterialForm
     {
         List<PersonModel> users = new List<PersonModel>();
         public DeleteUser()

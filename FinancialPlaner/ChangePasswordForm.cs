@@ -11,35 +11,37 @@ using System.Windows.Forms;
 using SideClass;
 using FinancialPlanerDB;
 using System.Security.Cryptography;
+using MaterialSkin.Controls;
 
 namespace FinancialPlaner
 {
-    public partial class ChangePasswordForm : Form
+    public partial class ChangePasswordForm : MaterialForm
     {
         public ChangePasswordForm()
         {
             InitializeComponent();
-            string username = SQLiter.getActiveUser();
-            qurrentPassword.Text = SQLiter.getUserPassword(username);
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string password = SQLiter.ComputeHash(textBox1.Text, new SHA256CryptoServiceProvider());
-            string username = SQLiter.getActiveUser();
-            DialogResult result = MessageBox.Show("Вы уверены в том, что хотите изменить пароль ?", "Инфо",
+            if (textBox1.Text == TextBox2.Text)
+            {
+                DialogResult result = MessageBox.Show("Вы уверены в том, что хотите изменить пароль ?", "Инфо",
                                                     MessageBoxButtons.YesNo,
                                                     MessageBoxIcon.Information);
-            if (result == DialogResult.Yes)
+                if (result == DialogResult.Yes)
+                {
+                    SQLiter.changePassword(SQLiter.getActiveUser(), SQLiter.ComputeHash(textBox1.Text, new SHA256CryptoServiceProvider()));
+                    MessageBox.Show("Пароль успешно изменён");
+                    Navigation.toMainForm(new expensesForm(), ActiveForm);
+                }
+            }
+            else
             {
-                SQLiter.changePassword(username, password);
-                MessageBox.Show("Пароль успешно изменён");
-                Navigation.toMainForm(new expensesForm(), ActiveForm);
+                MessageBox.Show("Пароли не совпадают! Введите пароли еще раз, пожалуйста!");
+                textBox1.Text = "";
+                TextBox2.Text = "";
             }
         }
 

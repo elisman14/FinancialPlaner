@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FinancialPlanerDB;
+using MaterialSkin.Controls;
 using Microsoft.VisualBasic;
 
 using SideClass;
 
 namespace FinancialPlaner
 {
-    public partial class expensesForm : Form
+    public partial class expensesForm : MaterialForm
     {
         List<CategoryModel> categories = new List<CategoryModel>();
 
@@ -53,7 +54,7 @@ namespace FinancialPlaner
                 {
                     categoryLabel.Text = category.name;
 
-                    SideClass.OutputData.outputExpensesToDgv(dataGridView1, category.name);
+                    OutputData.outputExpensesToDgv(dataGridView1, category.name);
 
                     var mlrArray = SQLiter.getMLRSum(category.name);
                     maxSumLabel.Text = mlrArray[0].ToString();
@@ -147,6 +148,16 @@ namespace FinancialPlaner
         private void WriteAllTimeStatToWord_button_Click(object sender, EventArgs e)
         {
             OutputData.outputDataToWord(AllTimeStat_DGV);
+        }
+
+        private void materialTabSelector1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialTabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

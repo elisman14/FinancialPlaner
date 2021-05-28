@@ -9,11 +9,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FinancialPlanerDB;
+using MaterialSkin.Controls;
 using SideClass;
 
 namespace FinancialPlaner
 {
-    public partial class ChooseUser : Form
+    public partial class ChooseUser : MaterialForm
     {
         public ChooseUser()
         {
@@ -38,7 +39,8 @@ namespace FinancialPlaner
             Navigation.toMainForm(new MainForm(), ActiveForm);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        
+        private void restorePasswordButton_Click(object sender, EventArgs e)
         {
             Navigation.toMainForm(new RestorePasswordForm(), ActiveForm);
         }

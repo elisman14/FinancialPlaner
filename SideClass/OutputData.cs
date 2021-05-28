@@ -13,6 +13,7 @@ namespace SideClass
 {
     public class OutputData
     {
+
         /* Вывод данных о пукупках в  DataGridView*/
         public static void outputExpensesToDgv(DataGridView grid, string category)
         {

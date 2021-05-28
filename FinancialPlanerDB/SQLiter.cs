@@ -116,7 +116,7 @@ namespace FinancialPlanerDB
             String thisDay = DateTime.Today.ToString();
             thisDay = thisDay.Replace(" 0:00:00", "");
             thisDay = thisDay.Split('.')[1];
-            //thisDay = thisDay.Replace("05", "04");
+            thisDay = thisDay.Replace("05", "04");
 
             return thisDay;
         }

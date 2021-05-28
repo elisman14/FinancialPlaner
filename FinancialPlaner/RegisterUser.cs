@@ -8,12 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FinancialPlanerDB;
-
+using MaterialSkin.Controls;
 using SideClass;
 
 namespace FinancialPlaner
 {
-    public partial class RegisterUser : Form
+    public partial class RegisterUser : MaterialForm
     {
         public RegisterUser()
         {

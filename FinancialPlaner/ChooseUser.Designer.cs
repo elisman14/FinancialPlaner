@@ -29,109 +29,150 @@ namespace FinancialPlaner
         /// </summary>
         private void InitializeComponent()
         {
-            this.confirm = new System.Windows.Forms.Button();
-            this.toMainMenu = new System.Windows.Forms.Button();
-            this.username = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.password = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.restorePasswordButton = new MaterialSkin.Controls.MaterialButton();
+            this.confirm = new MaterialSkin.Controls.MaterialButton();
+            this.password = new MaterialSkin.Controls.MaterialTextBox();
+            this.username = new MaterialSkin.Controls.MaterialTextBox();
+            this.toMainMenu = new MaterialSkin.Controls.MaterialButton();
             this.SuspendLayout();
-            // 
-            // confirm
-            // 
-            this.confirm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.confirm.Location = new System.Drawing.Point(387, 342);
-            this.confirm.Name = "confirm";
-            this.confirm.Size = new System.Drawing.Size(635, 41);
-            this.confirm.TabIndex = 1;
-            this.confirm.Text = "Войти";
-            this.confirm.UseVisualStyleBackColor = true;
-            this.confirm.Click += new System.EventHandler(this.confirm_Click);
-            // 
-            // toMainMenu
-            // 
-            this.toMainMenu.Location = new System.Drawing.Point(12, 704);
-            this.toMainMenu.Name = "toMainMenu";
-            this.toMainMenu.Size = new System.Drawing.Size(161, 40);
-            this.toMainMenu.TabIndex = 4;
-            this.toMainMenu.Text = "В меню";
-            this.toMainMenu.UseVisualStyleBackColor = true;
-            this.toMainMenu.Click += new System.EventHandler(this.toMainMenu_Click);
-            // 
-            // username
-            // 
-            this.username.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.username.Location = new System.Drawing.Point(513, 205);
-            this.username.Name = "username";
-            this.username.Size = new System.Drawing.Size(509, 34);
-            this.username.TabIndex = 6;
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(382, 213);
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(702, 379);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 27);
+            this.label2.Size = new System.Drawing.Size(62, 23);
             this.label2.TabIndex = 7;
             this.label2.Text = "логин";
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(382, 272);
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(698, 462);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 27);
+            this.label3.Size = new System.Drawing.Size(71, 23);
             this.label3.TabIndex = 9;
             this.label3.Text = "пароль";
             // 
+            // restorePasswordButton
+            // 
+            this.restorePasswordButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.restorePasswordButton.AutoSize = false;
+            this.restorePasswordButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.restorePasswordButton.Depth = 0;
+            this.restorePasswordButton.DrawShadows = true;
+            this.restorePasswordButton.HighEmphasis = true;
+            this.restorePasswordButton.Icon = null;
+            this.restorePasswordButton.Location = new System.Drawing.Point(526, 630);
+            this.restorePasswordButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.restorePasswordButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.restorePasswordButton.Name = "restorePasswordButton";
+            this.restorePasswordButton.Size = new System.Drawing.Size(414, 38);
+            this.restorePasswordButton.TabIndex = 29;
+            this.restorePasswordButton.Text = "Восстановить пароль";
+            this.restorePasswordButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.restorePasswordButton.UseAccentColor = false;
+            this.restorePasswordButton.UseVisualStyleBackColor = true;
+            this.restorePasswordButton.Click += new System.EventHandler(this.restorePasswordButton_Click);
+            // 
+            // confirm
+            // 
+            this.confirm.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.confirm.AutoSize = false;
+            this.confirm.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.confirm.Depth = 0;
+            this.confirm.DrawShadows = true;
+            this.confirm.HighEmphasis = true;
+            this.confirm.Icon = null;
+            this.confirm.Location = new System.Drawing.Point(526, 561);
+            this.confirm.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.confirm.MouseState = MaterialSkin.MouseState.HOVER;
+            this.confirm.Name = "confirm";
+            this.confirm.Size = new System.Drawing.Size(414, 38);
+            this.confirm.TabIndex = 28;
+            this.confirm.Text = "Войти";
+            this.confirm.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.confirm.UseAccentColor = false;
+            this.confirm.UseVisualStyleBackColor = true;
+            this.confirm.Click += new System.EventHandler(this.confirm_Click);
+            // 
             // password
             // 
-            this.password.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.password.Location = new System.Drawing.Point(513, 269);
+            this.password.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.password.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.password.Depth = 0;
+            this.password.Font = new System.Drawing.Font("Roboto", 12F);
+            this.password.Location = new System.Drawing.Point(400, 488);
+            this.password.MaxLength = 50;
+            this.password.MouseState = MaterialSkin.MouseState.OUT;
+            this.password.Multiline = false;
             this.password.Name = "password";
-            this.password.Size = new System.Drawing.Size(509, 34);
-            this.password.TabIndex = 8;
+            this.password.Password = true;
+            this.password.Size = new System.Drawing.Size(666, 36);
+            this.password.TabIndex = 27;
+            this.password.Text = "";
+            this.password.UseTallSize = false;
             // 
-            // button1
+            // username
             // 
-            this.button1.Location = new System.Drawing.Point(387, 389);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(635, 40);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Восстановить пароль";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.username.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.username.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.username.Depth = 0;
+            this.username.Font = new System.Drawing.Font("Roboto", 12F);
+            this.username.Location = new System.Drawing.Point(400, 412);
+            this.username.MaxLength = 50;
+            this.username.MouseState = MaterialSkin.MouseState.OUT;
+            this.username.Multiline = false;
+            this.username.Name = "username";
+            this.username.Size = new System.Drawing.Size(666, 36);
+            this.username.TabIndex = 26;
+            this.username.Text = "";
+            this.username.UseTallSize = false;
+            // 
+            // toMainMenu
+            // 
+            this.toMainMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.toMainMenu.AutoSize = false;
+            this.toMainMenu.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.toMainMenu.Depth = 0;
+            this.toMainMenu.DrawShadows = true;
+            this.toMainMenu.HighEmphasis = true;
+            this.toMainMenu.Icon = null;
+            this.toMainMenu.Location = new System.Drawing.Point(13, 729);
+            this.toMainMenu.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.toMainMenu.MouseState = MaterialSkin.MouseState.HOVER;
+            this.toMainMenu.Name = "toMainMenu";
+            this.toMainMenu.Size = new System.Drawing.Size(186, 38);
+            this.toMainMenu.TabIndex = 30;
+            this.toMainMenu.Text = "В меню";
+            this.toMainMenu.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.toMainMenu.UseAccentColor = false;
+            this.toMainMenu.UseVisualStyleBackColor = true;
+            this.toMainMenu.Click += new System.EventHandler(this.toMainMenu_Click);
             // 
             // ChooseUser
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 26F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1467, 782);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.password);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.username);
             this.Controls.Add(this.toMainMenu);
+            this.Controls.Add(this.restorePasswordButton);
             this.Controls.Add(this.confirm);
+            this.Controls.Add(this.password);
+            this.Controls.Add(this.username);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Font = new System.Drawing.Font("Times New Roman", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "ChooseUser";
-            this.Text = "ChooseUser";
+            this.Text = "Вход в профиль";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -139,12 +180,12 @@ namespace FinancialPlaner
         }
 
         #endregion
-        private System.Windows.Forms.Button confirm;
-        private System.Windows.Forms.Button toMainMenu;
-        private System.Windows.Forms.TextBox username;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox password;
-        private System.Windows.Forms.Button button1;
+        private MaterialSkin.Controls.MaterialButton restorePasswordButton;
+        private MaterialSkin.Controls.MaterialButton confirm;
+        private MaterialSkin.Controls.MaterialTextBox password;
+        private MaterialSkin.Controls.MaterialTextBox username;
+        private MaterialSkin.Controls.MaterialButton toMainMenu;
     }
 }

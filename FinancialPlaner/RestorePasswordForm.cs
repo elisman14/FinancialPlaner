@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using FinancialPlanerDB;
+using MaterialSkin.Controls;
 using SideClass;
 
 namespace FinancialPlaner
 {
-    public partial class RestorePasswordForm : Form
+    public partial class RestorePasswordForm : MaterialForm
     {
         public RestorePasswordForm()
         {
@@ -35,15 +36,12 @@ namespace FinancialPlaner
 
         private void restorePasswordButton_Click(object sender, EventArgs e)
         {
-
             if (SQLiter.isAnswerCorrect(answerControlQuestion.Text, username.Text))
             {
-                // var f = new ChangePasswordForm();
                 SQLiter.activateCurrentUser(username.Text);
                 Navigation.toMainForm(new ChangePasswordForm(), ActiveForm);
             }
             else MessageBox.Show("Ответ неверный");
-
         }
     }
 }
