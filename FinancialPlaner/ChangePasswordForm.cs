@@ -21,6 +21,36 @@ namespace FinancialPlaner
         {
             InitializeComponent();
 
+            customizeLabels();
+        }
+
+        private void customizeLabels()
+        {
+            switch (OutputData.isThemeDark)
+            {
+                case true:
+                    label1.BackColor = Color.FromArgb(50, 50, 50);
+                    label1.ForeColor = Color.FromArgb(242, 242, 242);
+                    label3.BackColor = Color.FromArgb(50, 50, 50);
+                    label3.ForeColor = Color.FromArgb(242, 242, 242);
+
+                    textBox1.BackColor = Color.FromArgb(50, 50, 50);
+                    textBox1.ForeColor = Color.FromArgb(242, 242, 242);
+                    TextBox2.BackColor = Color.FromArgb(50, 50, 50);
+                    TextBox2.ForeColor = Color.FromArgb(242, 242, 242);
+                    break;
+                case false:
+                    label1.BackColor = Color.FromArgb(242, 242, 242);
+                    label1.ForeColor = Color.FromArgb(50, 50, 50);
+                    label3.BackColor = Color.FromArgb(242, 242, 242);
+                    label3.ForeColor = Color.FromArgb(50, 50, 50);
+
+                    textBox1.BackColor = Color.FromArgb(242, 242, 242);
+                    textBox1.ForeColor = Color.FromArgb(50, 50, 50);
+                    TextBox2.BackColor = Color.FromArgb(242, 242, 242);
+                    TextBox2.ForeColor = Color.FromArgb(50, 50, 50);
+                    break;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -32,9 +62,16 @@ namespace FinancialPlaner
                                                     MessageBoxIcon.Information);
                 if (result == DialogResult.Yes)
                 {
-                    SQLiter.changePassword(SQLiter.getActiveUser(), SQLiter.ComputeHash(textBox1.Text, new SHA256CryptoServiceProvider()));
-                    MessageBox.Show("Пароль успешно изменён");
-                    Navigation.toMainForm(new expensesForm(), ActiveForm);
+                    try
+                    {
+                        SQLiter.changePassword(SQLiter.getActiveUser(), SQLiter.ComputeHash(textBox1.Text, new SHA256CryptoServiceProvider()));
+                        MessageBox.Show("Пароль успешно изменён");
+                        Navigation.toMainForm(new expensesForm(), ActiveForm);
+                    }catch(Exception)
+                    {
+                        MessageBox.Show("Что-то пошло не так");
+                    }
+                    
                 }
             }
             else

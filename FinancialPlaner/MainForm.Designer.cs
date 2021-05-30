@@ -42,17 +42,20 @@ namespace FinancialPlaner
             // 
             // listUsersListBox
             // 
-            this.listUsersListBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.listUsersListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.listUsersListBox.BackColor = System.Drawing.SystemColors.Control;
+            this.listUsersListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listUsersListBox.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listUsersListBox.FormattingEnabled = true;
-            this.listUsersListBox.ItemHeight = 20;
+            this.listUsersListBox.ItemHeight = 23;
             this.listUsersListBox.Location = new System.Drawing.Point(550, 248);
             this.listUsersListBox.Name = "listUsersListBox";
-            this.listUsersListBox.Size = new System.Drawing.Size(300, 284);
+            this.listUsersListBox.Size = new System.Drawing.Size(300, 276);
             this.listUsersListBox.TabIndex = 8;
             // 
             // button1
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.button1.AutoSize = false;
             this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.button1.Depth = 0;
@@ -73,7 +76,7 @@ namespace FinancialPlaner
             // 
             // deleteUser
             // 
-            this.deleteUser.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.deleteUser.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.deleteUser.AutoSize = false;
             this.deleteUser.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.deleteUser.Depth = 0;
@@ -178,7 +181,7 @@ namespace FinancialPlaner
             // 
             // materialLabel1
             // 
-            this.materialLabel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.materialLabel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.materialLabel1.AutoSize = true;
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
@@ -192,10 +195,13 @@ namespace FinancialPlaner
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.Location = new System.Drawing.Point(525, 228);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(350, 324);
             this.panel1.TabIndex = 37;
+            this.panel1.TabStop = true;
             // 
             // MainForm
             // 
@@ -215,7 +221,7 @@ namespace FinancialPlaner
             this.Font = new System.Drawing.Font("Times New Roman", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "Стартовая страница";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);

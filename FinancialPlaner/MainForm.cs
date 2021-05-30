@@ -19,7 +19,6 @@ namespace FinancialPlaner
     public partial class MainForm : MaterialForm
     {
         private readonly MaterialSkinManager materialSkinManager;
-        private int colorSchemeIndex = 0;
 
         List<PersonModel> users = new List<PersonModel>();
         public MainForm()
@@ -27,46 +26,87 @@ namespace FinancialPlaner
             InitializeComponent();
             LoadUsersList();
             SQLiter.clearAllSessions();
-            
+
             materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
-            customization();
+
+            customizPanel();
+            if (!OutputData.FromAnotherForm)
+            {
+                customization(); 
+                listUsersListBox.BackColor = Color.FromArgb(242, 242, 242);
+            }
         }
 
         public void theme()
         {
-            materialSkinManager.Theme = materialSkinManager.Theme == MaterialSkinManager.Themes.DARK ? MaterialSkinManager.Themes.LIGHT : MaterialSkinManager.Themes.DARK;
+            switch(materialSkinManager.Theme == MaterialSkinManager.Themes.DARK)
+            {
+                case true:
+                    materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+                    listUsersListBox.BackColor = Color.FromArgb(242, 242, 242);
+                    customizPanel();
+                    OutputData.isThemeDark = false;
+                    break;
+                case false:
+                    materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+                    listUsersListBox.BackColor = Color.FromArgb(50, 50, 50);
+                    customizPanel();
+                    OutputData.isThemeDark = true;
+                    break;
+            }
         }
 
         
         public void customization()
         {
-            if(colorSchemeIndex > 2) colorSchemeIndex = 0;
-            switch (colorSchemeIndex)
+            if(OutputData.colorSchemeIndex > 2) OutputData.colorSchemeIndex = 0;
+            switch (OutputData.colorSchemeIndex)
             {
                 case 0:
                     materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+                    panel1.Visible = true;
+                    panel1.BackColor = Color.FromArgb(55, 71, 79);
                     break;
                 case 1:
                     materialSkinManager.ColorScheme = new ColorScheme(Primary.Indigo500, Primary.Indigo700, Primary.Indigo100, Accent.Pink200, TextShade.WHITE);
+                    panel1.Visible = true;
+                    panel1.BackColor = Color.FromArgb(63, 81, 181);
                     break;
                 case 2:
                     materialSkinManager.ColorScheme = new ColorScheme(Primary.Green600, Primary.Green700, Primary.Green200, Accent.Red100, TextShade.WHITE);
+                    panel1.Visible = true;
+                    panel1.BackColor = Color.FromArgb(67, 160, 71);
                     break;
             }
-            colorSchemeIndex++;
+            OutputData.colorSchemeIndex++;
         }
 
         private void LoadUsersList()
         {
-            users = SQLiter.getUsers();
-            WireiUpUsersList();
+            try
+            {
+                users = SQLiter.getUsers();
+                WireiUpUsersList();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Что-то пошло не так");
+            }
         }
         private void WireiUpUsersList()
         {
-            listUsersListBox.DataSource = null;
-            listUsersListBox.DataSource = users;
-            listUsersListBox.DisplayMember = "username";
+            try
+            {
+                listUsersListBox.DataSource = null;
+                listUsersListBox.DataSource = users;
+                listUsersListBox.DisplayMember = "username";
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Что-то пошло не так");
+            }
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -115,6 +155,29 @@ namespace FinancialPlaner
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        public void customizPanel()
+        {
+            switch (OutputData.colorSchemeIndex - 1)
+            {
+                case 0:
+                    panel1.Visible = true;
+                    panel1.BackColor = Color.FromArgb(55, 71, 79);
+                    break;
+                case 1:
+                    panel1.Visible = true;
+                    panel1.BackColor = Color.FromArgb(63, 81, 181);
+                    break;
+                case 2:
+                    panel1.Visible = true;
+                    panel1.BackColor = Color.FromArgb(67, 160, 71);
+                    break;
+                default:
+                    panel1.Visible = true;
+                    panel1.BackColor = Color.FromArgb(67, 160, 71);
+                    break;
+            }
         }
     }
 }

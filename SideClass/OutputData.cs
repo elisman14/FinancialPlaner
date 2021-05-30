@@ -13,7 +13,9 @@ namespace SideClass
 {
     public class OutputData
     {
-
+        public static Boolean isThemeDark = false;
+        public static Boolean FromAnotherForm = false;
+        public static int colorSchemeIndex = 0;
         /* Вывод данных о пукупках в  DataGridView*/
         public static void outputExpensesToDgv(DataGridView grid, string category)
         {

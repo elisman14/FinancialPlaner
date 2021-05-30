@@ -24,10 +24,67 @@ namespace FinancialPlaner
             InitializeComponent();
             LoadCategoriesList();
             OutputStat();
+
+            CheckThemeStatus();
+            customizPanel();
+            customizeLabels();
         }
+
+        private void CheckThemeStatus()
+        {
+            switch(OutputData.isThemeDark)
+            {
+                case true:
+                    tabPage1.BackColor = Color.FromArgb(50, 50, 50);
+                    tabPage2.BackColor = Color.FromArgb(50, 50, 50);
+                    tabPage3.BackColor = Color.FromArgb(50, 50, 50);
+                    tabPage4.BackColor = Color.FromArgb(50, 50, 50);
+                    categoriesListBox.BackColor = Color.FromArgb(50, 50, 50);
+                    break;
+                case false:
+                    tabPage1.BackColor = Color.FromArgb(242,242,242);
+                    tabPage2.BackColor = Color.FromArgb(242, 242, 242);
+                    tabPage3.BackColor = Color.FromArgb(242, 242, 242);
+                    tabPage4.BackColor = Color.FromArgb(242, 242, 242);
+                    categoriesListBox.BackColor = Color.FromArgb(242, 242, 242);
+                    break;
+            }
+        }
+
+        public void customizPanel()
+        {
+            switch (OutputData.colorSchemeIndex - 1)
+            {
+                case 0:
+                    panel1.Visible = true;
+                    panel1.BackColor = Color.FromArgb(55, 71, 79);
+                    break;
+                case 1:
+                    panel1.Visible = true;
+                    panel1.BackColor = Color.FromArgb(63, 81, 181);
+                    break;
+                case 2:
+                    panel1.Visible = true;
+                    panel1.BackColor = Color.FromArgb(67, 160, 71);
+                    break;
+                default:
+                    panel1.Visible = true;
+                    panel1.BackColor = Color.FromArgb(67, 160, 71);
+                    break;
+            }
+        }
+
         private void LoadCategoriesList()
         {
-            categories = SQLiter.getCategories();
+            try 
+            {
+                categories = SQLiter.getCategories();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Что-то пошло не так");
+            }
+            
             WireiUpUsersList();
         }
         private void WireiUpUsersList()
@@ -54,12 +111,20 @@ namespace FinancialPlaner
                 {
                     categoryLabel.Text = category.name;
 
-                    OutputData.outputExpensesToDgv(dataGridView1, category.name);
+                    try 
+                    {
+                        OutputData.outputExpensesToDgv(dataGridView1, category.name);
 
-                    var mlrArray = SQLiter.getMLRSum(category.name);
-                    maxSumLabel.Text = mlrArray[0].ToString();
-                    lostSumLabel.Text = mlrArray[1].ToString();
-                    remainingSumLabel.Text = mlrArray[2].ToString();
+                        var mlrArray = SQLiter.getMLRSum(category.name);
+                        maxSumLabel.Text = mlrArray[0].ToString();
+                        lostSumLabel.Text = mlrArray[1].ToString();
+                        remainingSumLabel.Text = mlrArray[2].ToString();
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Что-то пошло не так");
+                    }
+                    
                 }
         }
 
@@ -83,8 +148,16 @@ namespace FinancialPlaner
             string name, cost, user;
             name = Interaction.InputBox("Введите названия новой покупки:");
             cost = Interaction.InputBox("Введите сумму новой покупки:");
-            user = SQLiter.getActiveUser();
-            SQLiter.addPaynment(name, categoryLabel.Text, cost, user);
+            try
+            {
+                user = SQLiter.getActiveUser();
+                SQLiter.addPaynment(name, categoryLabel.Text, cost, user);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Что-то пошло не так");
+            }
+            
         }
 
         private void deleteCategoryButton_Click(object sender, EventArgs e)
@@ -95,14 +168,24 @@ namespace FinancialPlaner
                                                      MessageBoxIcon.Information);
             if (result == DialogResult.Yes)
             {
-                SQLiter.deleteCategory(category.name);
-                MessageBox.Show("Категория успешно удалена");
+                try
+                {
+                    SQLiter.deleteCategory(category.name);
+                    MessageBox.Show("Категория успешно удалена");
+                    
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Что-то пошло не так");
+                }
                 LoadCategoriesList();
-            }           
+            }
         }
 
-        private void toMainMenu_Click(object sender, EventArgs e)
+        
+    private void toMainMenu_Click(object sender, EventArgs e)
         {
+            OutputData.FromAnotherForm = true;
             Navigation.toMainForm(new MainForm(), ActiveForm);
         }
 
@@ -150,6 +233,44 @@ namespace FinancialPlaner
             OutputData.outputDataToWord(AllTimeStat_DGV);
         }
 
+        private void customizeLabels()
+        {
+            switch (OutputData.isThemeDark)
+            {
+                case true:
+                    label1.BackColor = Color.FromArgb(50, 50, 50);
+                    label1.ForeColor = Color.FromArgb(242, 242, 242);
+                    label2.BackColor = Color.FromArgb(50, 50, 50);
+                    label2.ForeColor = Color.FromArgb(242, 242, 242);
+                    label3.BackColor = Color.FromArgb(50, 50, 50);
+                    label3.ForeColor = Color.FromArgb(242, 242, 242);
+                    label4.BackColor = Color.FromArgb(50, 50, 50);
+                    label4.ForeColor = Color.FromArgb(242, 242, 242);
+                    label5.BackColor = Color.FromArgb(50, 50, 50);
+                    label5.ForeColor = Color.FromArgb(242, 242, 242);
+                    categoryLabel.BackColor = Color.FromArgb(50, 50, 50);
+                    categoryLabel.ForeColor = Color.FromArgb(242, 242, 242);
+                    maxSumLabel.BackColor = Color.FromArgb(50, 50, 50);
+                    maxSumLabel.ForeColor = Color.FromArgb(242, 242, 242);
+                    lostSumLabel.BackColor = Color.FromArgb(50, 50, 50);
+                    lostSumLabel.ForeColor = Color.FromArgb(242, 242, 242);
+                    remainingSumLabel.BackColor = Color.FromArgb(50, 50, 50);
+                    remainingSumLabel.ForeColor = Color.FromArgb(242, 242, 242);
+                    CurrentMonth_label.BackColor = Color.FromArgb(50, 50, 50);
+                    CurrentMonth_label.ForeColor = Color.FromArgb(242, 242, 242);
+                    CurrentYear_label.BackColor = Color.FromArgb(50, 50, 50);
+                    CurrentYear_label.ForeColor = Color.FromArgb(242, 242, 242);
+                    break;
+                case false:
+                    label2.BackColor = Color.FromArgb(242, 242, 242);
+                    label2.ForeColor = Color.FromArgb(50, 50, 50);
+                    label3.BackColor = Color.FromArgb(242, 242, 242);
+                    label3.ForeColor = Color.FromArgb(50, 50, 50);
+                    label2.BackColor = Color.FromArgb(242, 242, 242);
+                    label2.ForeColor = Color.FromArgb(50, 50, 50);
+                    break;
+            }
+        }
         private void materialTabSelector1_Click(object sender, EventArgs e)
         {
 

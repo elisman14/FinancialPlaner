@@ -23,5 +23,10 @@ namespace FinancialPlaner
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey200, Primary.BlueGrey100, Primary.BlueGrey50, Accent.LightBlue200, TextShade.WHITE);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            textBox1.BackColor = Color.Black;
+        }
     }
 }
