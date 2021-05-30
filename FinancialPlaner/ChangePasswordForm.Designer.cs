@@ -32,7 +32,6 @@ namespace FinancialPlaner
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new MaterialSkin.Controls.MaterialButton();
-            this.dontChange = new MaterialSkin.Controls.MaterialButton();
             this.TextBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
@@ -78,27 +77,6 @@ namespace FinancialPlaner
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // dontChange
-            // 
-            this.dontChange.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dontChange.AutoSize = false;
-            this.dontChange.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.dontChange.Depth = 0;
-            this.dontChange.DrawShadows = true;
-            this.dontChange.HighEmphasis = true;
-            this.dontChange.Icon = null;
-            this.dontChange.Location = new System.Drawing.Point(361, 585);
-            this.dontChange.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.dontChange.MouseState = MaterialSkin.MouseState.HOVER;
-            this.dontChange.Name = "dontChange";
-            this.dontChange.Size = new System.Drawing.Size(400, 80);
-            this.dontChange.TabIndex = 11;
-            this.dontChange.Text = "Не изменять пароль";
-            this.dontChange.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.dontChange.UseAccentColor = false;
-            this.dontChange.UseVisualStyleBackColor = true;
-            this.dontChange.Click += new System.EventHandler(this.dontChange_Click);
-            // 
             // TextBox2
             // 
             this.TextBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -126,7 +104,6 @@ namespace FinancialPlaner
             this.ClientSize = new System.Drawing.Size(1122, 674);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.TextBox2);
-            this.Controls.Add(this.dontChange);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
@@ -144,7 +121,6 @@ namespace FinancialPlaner
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private MaterialSkin.Controls.MaterialButton button1;
-        private MaterialSkin.Controls.MaterialButton dontChange;
         private System.Windows.Forms.TextBox TextBox2;
         private System.Windows.Forms.TextBox textBox1;
     }

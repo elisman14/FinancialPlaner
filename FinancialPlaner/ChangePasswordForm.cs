@@ -57,21 +57,30 @@ namespace FinancialPlaner
         {
             if (textBox1.Text == TextBox2.Text)
             {
-                DialogResult result = MessageBox.Show("Вы уверены в том, что хотите изменить пароль ?", "Инфо",
-                                                    MessageBoxButtons.YesNo,
-                                                    MessageBoxIcon.Information);
-                if (result == DialogResult.Yes)
+                if (SQLiter.ComputeHash(textBox1.Text, new SHA256CryptoServiceProvider()) != SQLiter.getUserPassword(SQLiter.getActiveUser()))
                 {
-                    try
+                    DialogResult result = MessageBox.Show("Вы уверены в том, что хотите изменить пароль ?", "Инфо",
+                                                        MessageBoxButtons.YesNo,
+                                                        MessageBoxIcon.Information);
+                    if (result == DialogResult.Yes)
                     {
-                        SQLiter.changePassword(SQLiter.getActiveUser(), SQLiter.ComputeHash(textBox1.Text, new SHA256CryptoServiceProvider()));
-                        MessageBox.Show("Пароль успешно изменён");
-                        Navigation.toMainForm(new expensesForm(), ActiveForm);
-                    }catch(Exception)
-                    {
-                        MessageBox.Show("Что-то пошло не так");
+                        try
+                        {
+                            SQLiter.changePassword(SQLiter.getActiveUser(), SQLiter.ComputeHash(textBox1.Text, new SHA256CryptoServiceProvider()));
+                            MessageBox.Show("Пароль успешно изменён");
+                            Navigation.toMainForm(new expensesForm(), ActiveForm);
+                        } catch (Exception)
+                        {
+                            MessageBox.Show("Что-то пошло не так");
+                        }
+
                     }
-                    
+                }
+                else
+                {
+                    MessageBox.Show("Новый пароль совпадает со старым");
+                    TextBox2.Text = "";
+                    textBox1.Text = "";
                 }
             }
             else
@@ -82,9 +91,5 @@ namespace FinancialPlaner
             }
         }
 
-        private void dontChange_Click(object sender, EventArgs e)
-        {
-            Navigation.toMainForm(new expensesForm(), ActiveForm);
-        }
     }
 }

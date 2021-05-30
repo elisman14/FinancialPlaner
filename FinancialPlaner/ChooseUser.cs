@@ -60,8 +60,8 @@ namespace FinancialPlaner
                 string realPassword = SQLiter.getUserPassword(username.Text);
                 if (realPassword == SQLiter.ComputeHash(password.Text, new SHA256CryptoServiceProvider()))
                 {
-                    LogMessages.successfulLogin();
                     SQLiter.activateCurrentUser(username.Text);
+                    LogMessages.successfulLogin();
                     Navigation.toMainForm(new expensesForm(), ActiveForm);
                 }
                 else LogMessages.wrongData();
